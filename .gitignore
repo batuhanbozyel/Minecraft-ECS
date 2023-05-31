@@ -75,5 +75,6 @@ crashlytics-build.properties
 SceneDependencyCache/
 SceneDependencyCache.meta
 
-# DS_STORE
+# 
 .DS_STORE
+.vsconfig
