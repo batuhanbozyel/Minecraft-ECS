@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using Unity.Entities;
 using Unity.Collections;
+using Unity.Mathematics;
 
 public class WorldGenerationSettingsMono : MonoBehaviour
 {
     public WorldGenerationNoiseSettings noise;
     public GameObject grassPrefab;
-    public int chunkSize;
+    public int3 chunkSize;
     public int chunkCount;
 }
 

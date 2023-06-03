@@ -1,6 +1,7 @@
 using UnityEngine;
 using Unity.Entities;
 using Unity.Collections;
+using Unity.Mathematics;
 
 [System.Serializable]
 public struct WorldGenerationNoiseSettings
@@ -18,6 +19,6 @@ public struct WorldGenerationSettings : IComponentData
 {
     public WorldGenerationNoiseSettings noise;
     public Entity grassPrefab;
-    public int chunkSize;
+    public int3 chunkSize;
     public int chunkCount;
 }

@@ -134,22 +134,37 @@ PrefabInstance:
     - target: {fileID: 186169805412402130, guid: d49d94d6477b041c79cbf6255949f181,
         type: 3}
       propertyPath: chunkSize
-      value: 64
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 186169805412402130, guid: d49d94d6477b041c79cbf6255949f181,
         type: 3}
       propertyPath: noise.max
-      value: 0.7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 186169805412402130, guid: d49d94d6477b041c79cbf6255949f181,
         type: 3}
       propertyPath: noise.min
-      value: 0.3
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 186169805412402130, guid: d49d94d6477b041c79cbf6255949f181,
         type: 3}
       propertyPath: chunkCount
-      value: 9
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 186169805412402130, guid: d49d94d6477b041c79cbf6255949f181,
+        type: 3}
+      propertyPath: chunkSize.x
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 186169805412402130, guid: d49d94d6477b041c79cbf6255949f181,
+        type: 3}
+      propertyPath: chunkSize.y
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 186169805412402130, guid: d49d94d6477b041c79cbf6255949f181,
+        type: 3}
+      propertyPath: chunkSize.z
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 186169805412402130, guid: d49d94d6477b041c79cbf6255949f181,
         type: 3}
@@ -232,6 +247,52 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228010974101210425, guid: d49d94d6477b041c79cbf6255949f181,
+        type: 3}
+      propertyPath: noise.max
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228010974101210425, guid: d49d94d6477b041c79cbf6255949f181,
+        type: 3}
+      propertyPath: noise.min
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228010974101210425, guid: d49d94d6477b041c79cbf6255949f181,
+        type: 3}
+      propertyPath: chunkCount
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228010974101210425, guid: d49d94d6477b041c79cbf6255949f181,
+        type: 3}
+      propertyPath: chunkSize.x
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228010974101210425, guid: d49d94d6477b041c79cbf6255949f181,
+        type: 3}
+      propertyPath: chunkSize.y
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228010974101210425, guid: d49d94d6477b041c79cbf6255949f181,
+        type: 3}
+      propertyPath: chunkSize.z
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228010974101210425, guid: d49d94d6477b041c79cbf6255949f181,
+        type: 3}
+      propertyPath: grassPrefab
+      value: 
+      objectReference: {fileID: 8870385906891269250, guid: b69a5bc19947541e3b6719517fababf6,
+        type: 3}
+    - target: {fileID: 1228010974101210425, guid: d49d94d6477b041c79cbf6255949f181,
+        type: 3}
+      propertyPath: noise.amplitude
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228010974101210425, guid: d49d94d6477b041c79cbf6255949f181,
+        type: 3}
+      propertyPath: noise.frequency
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 3618931679147807511, guid: d49d94d6477b041c79cbf6255949f181,
         type: 3}

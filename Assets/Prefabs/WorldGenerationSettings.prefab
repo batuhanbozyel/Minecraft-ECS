@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 736474670508186370}
-  - component: {fileID: 186169805412402130}
+  - component: {fileID: 1228010974101210425}
   m_Layer: 0
   m_Name: WorldGenerationSettings
   m_TagString: Untagged
@@ -30,9 +30,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &186169805412402130
+--- !u!114 &1228010974101210425
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,11 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f35fbd24c56b24657bf4be6f817ced7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    noise:
-      seed: 0
-      frequency: 0.01
-      amplitude: 0.3
-      min: 0
-      max: 1
-    chunkSize: 32
+  noise:
+    seed: 0
+    frequency: 0
+    amplitude: 0
+    min: 0
+    max: 0
+  grassPrefab: {fileID: 0}
+  chunkSize:
+    x: 0
+    y: 0
+    z: 0
+  chunkCount: 0

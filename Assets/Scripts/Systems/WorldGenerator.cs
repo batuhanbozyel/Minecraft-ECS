@@ -29,7 +29,7 @@ public partial struct WorldGenerator : ISystem, ISystemStartStop
         for (var chunkIndex = 0; chunkIndex < settings.chunkCount; chunkIndex++)
         {
             #region Chunk Generator
-            var blocks = new NativeArray<BlockType>(settings.chunkSize * settings.chunkSize * settings.chunkSize, Allocator.Persistent);
+            var blocks = new NativeArray<BlockType>(settings.chunkSize.x * settings.chunkSize.y * settings.chunkSize.z, Allocator.Persistent);
             var generateChunk = new GenerateChunk
             {
                 settings = settings,
@@ -37,7 +37,7 @@ public partial struct WorldGenerator : ISystem, ISystemStartStop
                 chunkIndex = chunkIndex
             };
 
-            var chunkGenerator = generateChunk.Schedule(blocks.Length, settings.chunkSize);
+            var chunkGenerator = generateChunk.Schedule(blocks.Length, settings.chunkSize.y);
             chunkGenerator.Complete();
             #endregion
 
@@ -52,7 +52,7 @@ public partial struct WorldGenerator : ISystem, ISystemStartStop
                 chunkIndex = chunkIndex
             };
 
-            var voxelGenerator = generateVoxel.Schedule(blocks.Length, settings.chunkSize);
+            var voxelGenerator = generateVoxel.Schedule(blocks.Length, settings.chunkSize.y);
             voxelGenerator.Complete();
 
             ecb.Playback(state.EntityManager);
@@ -86,7 +86,7 @@ public partial struct WorldGenerator : ISystem, ISystemStartStop
         {
             var position = GetBlockPosition(startIndex, settings);
             var chunkOffset = GetChunkOffset(chunkIndex, settings);
-            int terrainHeight = math.clamp(ComputeTerrainHeight(position.x + chunkOffset.x, position.z + chunkOffset.y, settings.noise.seed), 0, settings.chunkSize);
+            int terrainHeight = math.clamp(ComputeTerrainHeight(position.x + chunkOffset.x, position.z + chunkOffset.y, settings.noise.seed), 0, settings.chunkSize.y);
 
             for (var y = 0; y < terrainHeight; y++)
             {
@@ -105,7 +105,7 @@ public partial struct WorldGenerator : ISystem, ISystemStartStop
             n = math.remap(-1.0f, 1.0f, settings.noise.min, settings.noise.max, n);
             var height = math.mul(n, settings.noise.amplitude);
 
-            return (int)(height * (settings.chunkSize - 1));
+            return (int)(height * (settings.chunkSize.y - 1));
         }
     }
 
@@ -133,9 +133,9 @@ public partial struct WorldGenerator : ISystem, ISystemStartStop
 
                 // Culling method
                 // TODO: implement greedy meshing algorithm
-                if (position.x == 0 || (position.x == settings.chunkSize - 1) ||
-                    position.y == 0 || (position.y == settings.chunkSize - 1) ||
-                    position.z == 0 || (position.z == settings.chunkSize - 1) ||
+                if (position.x == 0 || (position.x == settings.chunkSize.x - 1) ||
+                    position.y == 0 || (position.y == settings.chunkSize.y - 1) ||
+                    position.z == 0 || (position.z == settings.chunkSize.z - 1) ||
                     blocks[GetBlockIndex(new int3(position.x + 1, position.y, position.z), settings.chunkSize)] == BlockType.Air ||
                     blocks[GetBlockIndex(new int3(position.x - 1, position.y, position.z), settings.chunkSize)] == BlockType.Air ||
                     blocks[GetBlockIndex(new int3(position.x, position.y + 1, position.z), settings.chunkSize)] == BlockType.Air ||
@@ -158,21 +158,21 @@ public partial struct WorldGenerator : ISystem, ISystemStartStop
     private static int2 GetChunkOffset(int chunkIndex, WorldGenerationSettings settings)
     {
         int chunksForAxis = (int)math.sqrt(settings.chunkCount);
-        return new int2((chunkIndex / chunksForAxis) * settings.chunkSize, (chunkIndex % chunksForAxis) * settings.chunkSize);
+        return new int2((chunkIndex / chunksForAxis) * settings.chunkSize.x, (chunkIndex % chunksForAxis) * settings.chunkSize.z);
     }
 
     private static int3 GetBlockPosition(int blockIndex, WorldGenerationSettings settings)
     {
-        int x = blockIndex / (settings.chunkSize * settings.chunkSize);
-        int y = blockIndex % settings.chunkSize;
-        int z = (blockIndex / settings.chunkSize) % settings.chunkSize;
+        int x = blockIndex / (settings.chunkSize.y * settings.chunkSize.z);
+        int y = blockIndex % settings.chunkSize.y;
+        int z = (blockIndex / settings.chunkSize.y) % settings.chunkSize.z;
 
         return new int3(x, y, z);
     }
 
-    private static int GetBlockIndex(int3 position, int chunkSize)
+    private static int GetBlockIndex(int3 position, int3 chunkSize)
     {
-        return position.x * (chunkSize * chunkSize) + position.z * chunkSize + position.y;
+        return position.x * (chunkSize.y * chunkSize.z) + position.z * chunkSize.y + position.y;
     }
 }
 
